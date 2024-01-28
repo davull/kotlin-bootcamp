@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39f288c1-6ed8-4b66-b920-115edfceb14d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/FizzBuzzerTests.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FizzBizz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FizzBizz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FizzBuzzer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/FizzBuzzer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +118,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.FizzBuzzerTests" />
-        <item itemvalue="JUnit.FizzBuzzerTests.test getFizzBuzzes" />
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="JUnit.FizzBuzzerTests.test getFizzBuzzes" />
         <item itemvalue="JUnit.FizzBuzzerTests.test Buzz" />
         <item itemvalue="JUnit.FizzBuzzerTests.test getFizz (1)" />
       </list>
@@ -143,7 +140,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706470835936</updated>
-      <workItem from="1706470837010" duration="3250000" />
+      <workItem from="1706470837010" duration="3424000" />
     </task>
     <servers />
   </component>

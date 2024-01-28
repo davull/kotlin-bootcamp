@@ -2,14 +2,10 @@ typealias FizzBuzzOutput = (String) -> Unit
 
 class FizzBuzzer {
 
-    fun getFizzBuzzes(output: FizzBuzzOutput) {
-        val numbers = getNumbers()
-
-        for (number in numbers) {
-            val fizzBuzz = convertNumber(number)
-            output(fizzBuzz)
-        }
-    }
+    fun getFizzBuzzes(output: FizzBuzzOutput) =
+        getNumbers()
+            .map(::convertNumber)
+            .forEach(output)
 
     private fun getNumbers() = 1..100
 
