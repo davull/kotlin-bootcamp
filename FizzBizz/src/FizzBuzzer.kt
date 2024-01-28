@@ -1,18 +1,19 @@
+typealias FizzBuzzOutput = (String) -> Unit
+
 class FizzBuzzer {
 
-    fun getFizzBuzzes() {
-
+    fun getFizzBuzzes(output: FizzBuzzOutput) {
         val numbers = getNumbers()
 
         for (number in numbers) {
             val fizzBuzz = convertNumber(number)
-            println(fizzBuzz)
+            output(fizzBuzz)
         }
     }
 
     private fun getNumbers() = 1..100
 
-    private fun convertNumber(number: Int): String {
+    fun convertNumber(number: Int): String {
         if (isFizzBuzz(number)) {
             return "FizzBuzz"
         }
@@ -34,3 +35,4 @@ class FizzBuzzer {
 
     private fun isFizzBuzz(number: Int) = isFizz(number) && isBuzz(number)
 }
+
