@@ -31,4 +31,3 @@ class FizzBuzzer {
 
     private fun isFizzBuzz(number: Int) = isFizz(number) && isBuzz(number)
 }
-
