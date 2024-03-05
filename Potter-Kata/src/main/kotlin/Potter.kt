@@ -7,9 +7,14 @@
 // - [x] With 4 different books, you get a 20% discount.
 // - [x] If you go the whole hog, and buy all 5, you get
 //       a huge 25% discount.
-// - [ ] Note that if you buy, say, four books, of which 3 are
+// - [x] Note that if you buy, say, four books, of which 3 are
 //       different titles, you get a 10% discount on the 3 that
 //       form part of a set, but the fourth book still costs 8 EUR.
+// - [ ] Potter mania is sweeping the country and parents of
+//       teenagers everywhere are queueing up with shopping baskets
+//       overflowing with Potter books. Your mission is to write a
+//       piece of code to calculate the price of any conceivable
+//       shopping basket, **giving as big a discount as possible**.
 
 class Potter {
     private val basePrice = 8.0
