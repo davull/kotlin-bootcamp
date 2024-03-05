@@ -1,21 +1,46 @@
 // https://codingdojo.org/kata/Potter/
 
-// - One copy of any of the five books costs 8 EUR.
-// - If, however, you buy two different books from the
+// - [x] One copy of any of the five books costs 8 EUR.
+// - [x] If, however, you buy two different books from the
 //   series, you get a 5% discount on those two books.
-// - If you buy 3 different books, you get a 10% discount.
-// - With 4 different books, you get a 20% discount.
-// - If you go the whole hog, and buy all 5, you get
+// - [x] If you buy 3 different books, you get a 10% discount.
+// - [x] With 4 different books, you get a 20% discount.
+// - [x] If you go the whole hog, and buy all 5, you get
 //   a huge 25% discount.
 
 class Potter {
+    private var basePrice = 8.0
 
-    private var basePrice = 8f;
+    fun price(books: Array<Int>): Double {
+        val itemsPerBookType = getItemsPerBookType(books)
+        val numberOfDistinctBooks = itemsPerBookType.size
+        val discount = getDiscount(numberOfDistinctBooks)
+        val price = getDiscountedPrice(basePrice, discount)
 
-    fun price(books: Array<Int>): Float {
-        return basePrice * books.size;
+        return price * books.size
+
     }
 
+    private fun getItemsPerBookType(books: Array<Int>): Map<Int, Int> {
+        val groups = books
+            .groupBy { it }
+            .map { it.key to it.value.size }
+            .toMap()
+        return groups
+    }
 
+    private fun getDiscount(numberOfDistinctBooks: Int): Double {
+        return when (numberOfDistinctBooks) {
+            2 -> .05
+            3 -> .1
+            4 -> .2
+            5 -> .25
+            else -> .0
+        }
+    }
 
+    private fun getDiscountedPrice(price: Double, discount: Double): Double {
+        val factor = 1 - discount
+        return price * factor
+    }
 }
