@@ -2,45 +2,76 @@
 
 // - [x] One copy of any of the five books costs 8 EUR.
 // - [x] If, however, you buy two different books from the
-//   series, you get a 5% discount on those two books.
+//       series, you get a 5% discount on those two books.
 // - [x] If you buy 3 different books, you get a 10% discount.
 // - [x] With 4 different books, you get a 20% discount.
 // - [x] If you go the whole hog, and buy all 5, you get
-//   a huge 25% discount.
+//       a huge 25% discount.
+// - [ ] Note that if you buy, say, four books, of which 3 are
+//       different titles, you get a 10% discount on the 3 that
+//       form part of a set, but the fourth book still costs 8 EUR.
 
 class Potter {
-    private var basePrice = 8.0
+    private val basePrice = 8.0
 
     fun price(books: Array<Int>): Double {
-        val itemsPerBookType = getItemsPerBookType(books)
-        val numberOfDistinctBooks = itemsPerBookType.size
-        val discount = getDiscount(numberOfDistinctBooks)
-        val price = getDiscountedPrice(basePrice, discount)
-
-        return price * books.size
-
+        val bookSets = buildSets(books)
+        val totalPrice = bookSets.sumOf { getPriceOfSet(it) }
+        return totalPrice
     }
 
-    private fun getItemsPerBookType(books: Array<Int>): Map<Int, Int> {
-        val groups = books
+    private fun buildSets(books: Array<Int>): Array<Array<Int>> {
+        val itemsPerBookType = getItemsPerBookType(books)
+        val sets = buildSets(itemsPerBookType)
+        return sets
+    }
+
+    private fun buildSets(itemsPerBookType: MutableMap<Int, Int>): Array<Array<Int>> {
+
+        val numberOfSets =
+            if (itemsPerBookType.isNotEmpty())
+                itemsPerBookType.maxOf { it.value }
+            else
+                0
+
+        val sets = Array(numberOfSets) { mutableListOf<Int>() }
+
+        for (i in 0 until numberOfSets) {
+            for ((book, count) in itemsPerBookType) {
+                if (count == 0) continue
+
+                sets[i].add(book)
+                itemsPerBookType[book] = count - 1
+            }
+        }
+
+        return sets
+            .map { it.toTypedArray() }
+            .toTypedArray()
+    }
+
+    private fun getPriceOfSet(bookSet: Array<Int>): Double {
+        val numberOfDistinctBooks = bookSet.size
+        val discount = getDiscount(numberOfDistinctBooks)
+        val price = getDiscountedPrice(basePrice, discount)
+        return price * bookSet.size
+    }
+
+    private fun getItemsPerBookType(books: Array<Int>): MutableMap<Int, Int> {
+        return books
             .groupBy { it }
             .map { it.key to it.value.size }
             .toMap()
-        return groups
+            .toMutableMap()
     }
 
-    private fun getDiscount(numberOfDistinctBooks: Int): Double {
-        return when (numberOfDistinctBooks) {
-            2 -> .05
-            3 -> .1
-            4 -> .2
-            5 -> .25
-            else -> .0
-        }
+    private fun getDiscount(numberOfDistinctBooks: Int) = when (numberOfDistinctBooks) {
+        2 -> .05
+        3 -> .1
+        4 -> .2
+        5 -> .25
+        else -> .0
     }
 
-    private fun getDiscountedPrice(price: Double, discount: Double): Double {
-        val factor = 1 - discount
-        return price * factor
-    }
+    private fun getDiscountedPrice(price: Double, discount: Double) = price * (1 - discount)
 }
